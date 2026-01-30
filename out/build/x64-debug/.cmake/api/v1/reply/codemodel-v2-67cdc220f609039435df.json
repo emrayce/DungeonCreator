@@ -1,0 +1,94 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "Src",
+					"jsonFile" : "directory-Src-Debug-6ac98766994f3396fe25.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Src",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1
+					],
+					"name" : "DungeonCreator",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "DungeonCreator::@fffd7673bb2fd0d58c2a",
+					"jsonFile" : "target-DungeonCreator-Debug-86cf4cf3a33586cbf941.json",
+					"name" : "DungeonCreator",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "DungeonCreator_autogen::@fffd7673bb2fd0d58c2a",
+					"jsonFile" : "target-DungeonCreator_autogen-Debug-15665ea84ab595c0d95f.json",
+					"name" : "DungeonCreator_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "DungeonCreator_autogen_timestamp_deps::@fffd7673bb2fd0d58c2a",
+					"jsonFile" : "target-DungeonCreator_autogen_timestamp_deps-Debug-89745849466406f2a088.json",
+					"name" : "DungeonCreator_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/Projet/DungeonCreator/out/build/x64-debug",
+		"source" : "D:/Projet/DungeonCreator"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 8
+	}
+}
