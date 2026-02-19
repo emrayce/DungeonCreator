@@ -31,6 +31,6 @@ protected:
 private:
     bool m_animating = false;
 
-    QOpenGLContext* m_context = nullptr;
-    QOpenGLPaintDevice* m_device = nullptr;
+    QOpenGLContext* m_context = nullptr;        // The openGL Context to draw a frame
+    QOpenGLPaintDevice* m_device = nullptr;     // The tool to draw with an openGL context
 };
