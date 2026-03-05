@@ -22,4 +22,3 @@ qt_standard_project_setup()
 
 add_subdirectory(src)
 
-# TODO: Add tests and install targets if needed.

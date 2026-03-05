@@ -13,8 +13,9 @@ public:
     void render() override;
 
 private:
-    GLint m_matrixUniform = 0;
-    QOpenGLBuffer m_vbo;
+    GLint m_projectionUniform, m_viewUniform, m_modelUniform = 0;
+    GLuint VAO, VBO, IBO = 0;
+    QOpenGLBuffer *m_vbo, *m_ibo;
     QOpenGLShaderProgram* m_program = nullptr;
     int m_frame = 0;
 };
