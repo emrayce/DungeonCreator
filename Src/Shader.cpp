@@ -69,7 +69,7 @@ QString Shader::ReadFile(const char* fileLocation)
 
 	if (!fileStream.is_open())
 	{
-		std::cout << "Failed to read " << fileLocation << "! File doesn't exist." << std::endl;
+		qDebug() << "Failed to read " << fileLocation << "! File doesn't exist.";
 		return "";
 	}
 

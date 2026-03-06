@@ -21,4 +21,3 @@ find_package(Qt6 REQUIRED COMPONENTS OpenGL)
 qt_standard_project_setup()
 
 add_subdirectory(src)
-

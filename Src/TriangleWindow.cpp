@@ -1,6 +1,7 @@
 #include "TriangleWindow.h"
 
 #include <QScreen>
+#include "Utils.h"
 
 static const char* vertexShaderSource = "#version 330\n"
 "in highp vec4 posAttr;\n"
@@ -55,9 +56,13 @@ void TriangleWindow::initialize()
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), nullptr);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), reinterpret_cast<void*>(3 * sizeof(GLfloat)));
 
+    // Create shader program from shader files
     shader = new Shader(this);
-    shader->CreateFromString(vertexShaderSource, fragmentShaderSource);
-    shader->CompileProgram();
+    QString vertexShaderPath;
+    vertexShaderPath.append(PROJECT_ROOT).append("/Shaders/shader.vert");
+    QString fragmentShaderPath;
+    fragmentShaderPath.append(PROJECT_ROOT).append("/Shaders/shader.frag");
+    shader->CreateFromFiles(qPrintable(vertexShaderPath), qPrintable(fragmentShaderPath));
 }
 
 void TriangleWindow::render()
