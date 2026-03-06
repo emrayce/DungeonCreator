@@ -2,7 +2,7 @@
 
 #include "OpenGLWindow.h"
 #include <QOpenGLBuffer>
-#include <QOpenGLShaderProgram>
+#include "Shader.h"
 
 class TriangleWindow : public OpenGLWindow
 {
@@ -17,5 +17,6 @@ private:
     GLuint VAO, VBO, IBO = 0;
     QOpenGLBuffer *m_vbo, *m_ibo;
     QOpenGLShaderProgram* m_program = nullptr;
+    Shader* shader = nullptr;
     int m_frame = 0;
 };

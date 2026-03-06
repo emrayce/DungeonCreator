@@ -29,7 +29,6 @@ void TriangleWindow::initialize()
         0, 1, 2 // bottom
     };
 
-    
     m_ibo = new QOpenGLBuffer(QOpenGLBuffer::Type::IndexBuffer);
     m_ibo->create();
     m_ibo->bind();
@@ -44,12 +43,10 @@ void TriangleWindow::initialize()
             +0.0f, +1.0f, +0.0f, 1.0f, 1.0f, 1.0f, // up
     };
 
-
     m_vbo = new QOpenGLBuffer(QOpenGLBuffer::Type::VertexBuffer);
     m_vbo->create();
     m_vbo->bind();
     m_vbo->allocate(vertices, sizeof(vertices));
-
 
     // Enable vertex array for the shader
     glEnableVertexAttribArray(0);
@@ -58,21 +55,9 @@ void TriangleWindow::initialize()
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), nullptr);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), reinterpret_cast<void*>(3 * sizeof(GLfloat)));
 
-    m_program = new QOpenGLShaderProgram(this);
-    m_program->addShaderFromSourceCode(QOpenGLShader::Vertex, vertexShaderSource);
-    m_program->addShaderFromSourceCode(QOpenGLShader::Fragment, fragmentShaderSource);
-    // Associate variable name to the vertex arrays we created
-    m_program->bindAttributeLocation("posAttr", 0);
-    m_program->bindAttributeLocation("colAttr", 1);
-    m_program->link();
-    m_program->bind();
-    // Get location/id of uniform varaible matrix
-    m_projectionUniform = m_program->uniformLocation("projection");
-    Q_ASSERT(m_projectionUniform != -1);
-    m_viewUniform = m_program->uniformLocation("view");
-    Q_ASSERT(m_viewUniform != -1);
-    m_modelUniform = m_program->uniformLocation("model");
-    Q_ASSERT(m_modelUniform != -1);
+    shader = new Shader(this);
+    shader->CreateFromString(vertexShaderSource, fragmentShaderSource);
+    shader->CompileProgram();
 }
 
 void TriangleWindow::render()
@@ -83,7 +68,7 @@ void TriangleWindow::render()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
 
-    m_program->bind();
+    shader->bind();
 
     // Create the matrix to apply to the triangle
     // The order is projection * view * model
@@ -99,9 +84,9 @@ void TriangleWindow::render()
     model.rotate(100.0f * m_frame / screen()->refreshRate(), 0, 1, 0);
 
     // pass the matrices values to the shader
-    m_program->setUniformValue(m_projectionUniform, projection);
-    m_program->setUniformValue(m_viewUniform, view);
-    m_program->setUniformValue(m_modelUniform, model);
+    shader->setUniformValue(shader->GetUniformProjection(), projection);
+    shader->setUniformValue(shader->GetUniformView(), view);
+    shader->setUniformValue(shader->GetUniformModel(), model);
 
     // render the triangle
     // Enable the vertex arrays we created
@@ -113,8 +98,8 @@ void TriangleWindow::render()
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
 
-    // Use the active shader program
-    m_program->release();
+    // Remove the shader from context
+    shader->release();
 
     ++m_frame;
 }

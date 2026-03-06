@@ -1,5 +1,5 @@
 # Add source to this project's executable.
-qt_add_executable (DungeonCreator "Main.cpp" "OpenGLWindow.cpp" "TriangleWindow.cpp")
+qt_add_executable (DungeonCreator "Main.cpp" "OpenGLWindow.cpp" "TriangleWindow.cpp" "Shader.cpp")
 
 target_link_libraries(DungeonCreator PRIVATE Qt6::OpenGL)
 
