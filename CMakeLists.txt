@@ -1,7 +1,7 @@
 ﻿# CMakeList.txt : CMake project for DungeonCreator, include source and define
 # project specific logic here.
 #
-cmake_minimum_required (VERSION 3.8)
+cmake_minimum_required (VERSION 3.21)
 
 # Enable Hot Reload for MSVC compilers if supported.
 if (POLICY CMP0141)
@@ -20,4 +20,4 @@ find_package(Qt6 REQUIRED COMPONENTS OpenGL)
 
 qt_standard_project_setup()
 
-add_subdirectory(src)
+add_subdirectory(Src)

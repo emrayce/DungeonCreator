@@ -3,24 +3,6 @@
 #include <QScreen>
 #include "Utils.h"
 
-static const char* vertexShaderSource = "#version 330\n"
-"in highp vec4 posAttr;\n"
-"in lowp vec4 colAttr;\n"
-"out lowp vec4 col;\n"
-"uniform highp mat4 projection;\n"
-"uniform highp mat4 view;\n"
-"uniform highp mat4 model;\n"
-"void main() {\n"
-"   col = colAttr;\n"
-"   gl_Position = projection * view *model * posAttr;\n"
-"}\n";
-
-static const char* fragmentShaderSource = "#version 330\n"
-"in lowp vec4 col;\n"
-"void main() {\n"
-"   gl_FragColor = col;\n"
-"}\n";
-
 void TriangleWindow::initialize()
 {
     unsigned int indices[] = {
