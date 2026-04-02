@@ -10,19 +10,12 @@
 using namespace std;
 
 int main(int argc, char** argv)
-{
+{ 
     QGuiApplication app(argc, argv);
 
     // Set up multisampling
     QSurfaceFormat format;
     format.setSamples(16);
-    // Setting up required version of OpenGL
-    //format.setMajorVersion(3);
-    //format.setMinorVersion(0);
-    // Setting up no compatibility for deprecated functionality
-    //format.setProfile(QSurfaceFormat::CoreProfile);
-    // Ask for a debug context for specific OpenGL debugging
-    //format.setOption(QSurfaceFormat::DebugContext);
 
     // Initialize 
     TriangleWindow window;
