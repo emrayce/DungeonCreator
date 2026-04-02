@@ -5,6 +5,10 @@
 
 void TriangleWindow::initialize()
 {
+    m_vao = new QOpenGLVertexArrayObject();
+    m_vao->create();
+    m_vao->bind();
+
     unsigned int indices[] = {
         0, 3, 1,
         1, 3, 2,
@@ -31,12 +35,15 @@ void TriangleWindow::initialize()
     m_vbo->bind();
     m_vbo->allocate(vertices, sizeof(vertices));
 
-    // Enable vertex array for the shader
+    // Enable and fill the array holding vertices data
     glEnableVertexAttribArray(0);
-    glEnableVertexAttribArray(1);
-    // Fill vertex array with data: xyz Pos + rgb color
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), nullptr);
+    // Enable and fill the array holding the color data
+    glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), reinterpret_cast<void*>(3 * sizeof(GLfloat)));
+
+    m_vao->release();
+
 
     // Create shader program from shader files
     shader = new Shader(this);
@@ -70,23 +77,27 @@ void TriangleWindow::render()
     model.translate(0, 0, -3);
     model.rotate(100.0f * m_frame / screen()->refreshRate(), 0, 1, 0);
 
+
     // pass the matrices values to the shader
     shader->setUniformValue(shader->GetUniformProjection(), projection);
     shader->setUniformValue(shader->GetUniformView(), view);
     shader->setUniformValue(shader->GetUniformModel(), model);
 
+
     // render the triangle
     // Enable the vertex arrays we created
-    glEnableVertexAttribArray(0);
-    glEnableVertexAttribArray(1);
+
     // Draw from the data in the arrays
-    glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0);
+    m_vao->bind();
+    glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, nullptr);
     // disable the vertex arrays
-    glDisableVertexAttribArray(0);
-    glDisableVertexAttribArray(1);
+
+    m_vao->release();
+
 
     // Remove the shader from context
     shader->release();
+
 
     ++m_frame;
 }
