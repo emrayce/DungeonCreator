@@ -5,7 +5,7 @@ configure_file(
     Utils.h.in
     ${GENEREATED_FILES}/Utils.h)
 
-qt_add_executable(DungeonCreator "Main.cpp" "OpenGLWindow.cpp" "TriangleWindow.cpp" "Shader.cpp")
+qt_add_executable(DungeonCreator "Main.cpp" "TriangleWindow.cpp" "Shader.cpp" "Mesh.cpp")
 
 target_include_directories(DungeonCreator PUBLIC
                             "${GENEREATED_FILES}"

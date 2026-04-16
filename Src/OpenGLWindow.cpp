@@ -1,4 +1,4 @@
-#include "OpenGLWindow.h"
+//#include "OpenGLWindow.h"
 #include <QPainter>
 
 OpenGLWindow::OpenGLWindow(QWindow* parent)
