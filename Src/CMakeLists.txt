@@ -5,7 +5,7 @@ configure_file(
     Utils.h.in
     ${GENEREATED_FILES}/Utils.h)
 
-qt_add_executable(DungeonCreator "Main.cpp" "OpenGLWindow.cpp" "TriangleWindow.cpp" "Shader.cpp")
+qt_add_executable(DungeonCreator "Main.cpp" "TriangleWindow.cpp" "Shader.cpp" "Mesh.cpp")
 
 target_include_directories(DungeonCreator PUBLIC
                             "${GENEREATED_FILES}"
@@ -15,4 +15,5 @@ target_link_libraries(DungeonCreator PRIVATE Qt6::OpenGL)
 
 set_target_properties(DungeonCreator PROPERTIES
     WIN32_EXECUTABLE ON
+    LINK_FLAGS_DEBUG "/SUBSYSTEM:CONSOLE"
 )

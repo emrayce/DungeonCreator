@@ -1,5 +1,6 @@
-#version 330
+#version 450
 in lowp vec4 col;
+out vec4 outputColor;
 void main() {
-   gl_FragColor = col;
+   outputColor = col;
 }

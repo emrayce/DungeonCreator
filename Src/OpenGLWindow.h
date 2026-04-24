@@ -1,11 +1,11 @@
 #pragma once
-
+/*
 #include <QOpenGLFunctions>
 #include <QOpenGLPaintDevice>
-#include <QWindow>
+#include <QOpenGLWindow>
 
 
-class OpenGLWindow : public QWindow, protected QOpenGLFunctions
+class OpenGLWindow : public QOpenGLWindow, protected QOpenGLFunctions
 {
 	Q_OBJECT
 public:
@@ -33,4 +33,4 @@ private:
 
     QOpenGLContext* m_context = nullptr;        // The openGL Context to draw a frame
     QOpenGLPaintDevice* m_device = nullptr;     // The tool to draw with an openGL context
-};
+};*/

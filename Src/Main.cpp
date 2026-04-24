@@ -15,7 +15,17 @@ int main(int argc, char** argv)
 
     // Set up multisampling
     QSurfaceFormat format;
-    format.setSamples(16);
+    if (QOpenGLContext::openGLModuleType() == QOpenGLContext::LibGL) {
+        qDebug("Requesting 4.5 core context");
+        format.setVersion(4, 5);
+        format.setProfile(QSurfaceFormat::CoreProfile);
+    }
+    else {
+        qDebug("Requesting 3.0 context");
+        format.setVersion(3, 0);
+    }
+    QSurfaceFormat::setDefaultFormat(format);
+
 
     // Initialize 
     TriangleWindow window;
@@ -23,7 +33,5 @@ int main(int argc, char** argv)
     window.resize(640, 480);
     window.show();
 
-    window.setAnimating(true);
-
-    return app.exec();
+   return app.exec();
 }
