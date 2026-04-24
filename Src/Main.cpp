@@ -15,7 +15,7 @@ int main(int argc, char** argv)
 
     // Set up multisampling
     QSurfaceFormat format;
-    if (QOpenGLContext::openGLModuleType() == QOpenGLContext::LibGL) {
+    /*if (QOpenGLContext::openGLModuleType() == QOpenGLContext::LibGL) {
         qDebug("Requesting 3.3 core context");
         format.setVersion(3, 3);
         format.setProfile(QSurfaceFormat::CoreProfile);
@@ -23,7 +23,7 @@ int main(int argc, char** argv)
     else {
         qDebug("Requesting 3.0 context");
         format.setVersion(3, 0);
-    }
+    }*/
     QSurfaceFormat::setDefaultFormat(format);
 
 
@@ -33,5 +33,5 @@ int main(int argc, char** argv)
     window.resize(640, 480);
     window.show();
 
-    return app.exec();
+   return app.exec();
 }

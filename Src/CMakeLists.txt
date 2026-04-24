@@ -15,4 +15,5 @@ target_link_libraries(DungeonCreator PRIVATE Qt6::OpenGL)
 
 set_target_properties(DungeonCreator PROPERTIES
     WIN32_EXECUTABLE ON
+    LINK_FLAGS_DEBUG "/SUBSYSTEM:CONSOLE"
 )

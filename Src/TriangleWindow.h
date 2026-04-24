@@ -1,6 +1,5 @@
 #pragma once
 
-//#include "OpenGLWindow.h"
 #include "Mesh.h"
 #include <QOpenGLBuffer>
 #include <QOpenGLExtraFunctions>
@@ -11,6 +10,7 @@
 class TriangleWindow : public QOpenGLWindow, protected QOpenGLExtraFunctions
 {
 public:
+    TriangleWindow();
 
     void initializeGL();
     void resizeGL(int w, int h);
@@ -25,6 +25,7 @@ private:
     QOpenGLShaderProgram* m_program = nullptr;
     Shader* shader = nullptr;
     int m_frame = 0;
+    GLfloat angle = 0.0f;
 
     bool m_uniformsDirty = true; // Specify if uniform values have changed
 };
