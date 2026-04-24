@@ -15,15 +15,15 @@ int main(int argc, char** argv)
 
     // Set up multisampling
     QSurfaceFormat format;
-    /*if (QOpenGLContext::openGLModuleType() == QOpenGLContext::LibGL) {
-        qDebug("Requesting 3.3 core context");
-        format.setVersion(3, 3);
+    if (QOpenGLContext::openGLModuleType() == QOpenGLContext::LibGL) {
+        qDebug("Requesting 4.5 core context");
+        format.setVersion(4, 5);
         format.setProfile(QSurfaceFormat::CoreProfile);
     }
     else {
         qDebug("Requesting 3.0 context");
         format.setVersion(3, 0);
-    }*/
+    }
     QSurfaceFormat::setDefaultFormat(format);
 
 

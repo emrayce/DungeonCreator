@@ -1,4 +1,4 @@
-#version 330
+#version 450
 in highp vec4 posAttr;
 in lowp vec4 colAttr;
 out lowp vec4 col;

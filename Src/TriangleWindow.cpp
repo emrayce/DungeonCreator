@@ -11,7 +11,7 @@ TriangleWindow::TriangleWindow()
     connect(timer, &QTimer::timeout, this, [this]() {
         angle += 1.0f;
         update();
-        });
+    });
     timer->start(16); // ~60 FPS
 }
 
@@ -20,7 +20,6 @@ void TriangleWindow::initializeGL()
     // Init OpenGL functions to avoid errors
     // Remember that at first the openGL functions pointer points to nothing since implementation depend of GPU drivers.
     initializeOpenGLFunctions();
-    //glCullFace(GL_FRONT);
 
     unsigned int indices[] = {
         0, 1, 3, // Front
