@@ -21,7 +21,7 @@ private:
     QMatrix4x4 m_projection, m_view, m_model;
     Mesh* m_mesh = nullptr;
     QOpenGLVertexArrayObject* m_vao = nullptr;
-    QOpenGLBuffer* m_vbo, *m_ibo = nullptr;
+    QOpenGLBuffer* m_vbo = nullptr, *m_ibo = nullptr;
     QOpenGLShaderProgram* m_program = nullptr;
     Shader* shader = nullptr;
     int m_frame = 0;

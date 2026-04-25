@@ -37,7 +37,7 @@ void TriangleWindow::initializeGL()
             +1.0f, -1.0f, -0.6f, 1.0f, 0.0f, 0.0f // right
     };
 
-    m_vao = new QOpenGLVertexArrayObject();
+    /*m_vao = new QOpenGLVertexArrayObject();
     m_vao->create();
     m_vao->bind();
 
@@ -49,20 +49,10 @@ void TriangleWindow::initializeGL()
     m_vbo = new QOpenGLBuffer(QOpenGLBuffer::Type::VertexBuffer);
     m_vbo->create();
     m_vbo->bind();
-    m_vbo->allocate(vertices, sizeof(vertices));
+    m_vbo->allocate(vertices, sizeof(vertices));*/
 
-    // Enable and fill the array holding vertices data
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), nullptr);
-    // Enable and fill the array holding the color data
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), reinterpret_cast<void*>(3 * sizeof(GLfloat)));
-
-    m_vbo->release();
-    m_vao->release();
-
-    //m_mesh = new Mesh();
-    //m_mesh->CreateMesh(vertices, indices, 24, 12);
+    m_mesh = new Mesh();
+    m_mesh->CreateMesh(vertices, indices, 24, 12);
 
     // Create shader program from shader files
     shader = new Shader(this);
@@ -92,30 +82,21 @@ void TriangleWindow::paintGL()
 
     shader->bind();
 
-    // Initialize the matrices to apply to the triangle
-    // The order is projection * view * model
-    // The projection matrix is already set up in the resize
-    // keeping identity matrix for the view matrix so the camera is at 0, 0, 0
-    // Initialize the model matrix
+
+    // Create a model matrice to apply to our mesh
     QMatrix4x4 model;
-    model.translate(0, 0, -3);
-    //m_model.rotate(100.0f * m_frame / screen()->refreshRate(), 0, 1, 0);
+    model.translate(QVector3D(0, 0, -3));
     model.rotate(100.0f * m_frame / screen()->refreshRate(), 0, 1, 0);
+    m_mesh->SetModelMatrice(model);
+
 
     // pass the matrices values to the shader
     shader->setUniformValue(shader->GetUniformProjection(), m_projection);
     shader->setUniformValue(shader->GetUniformView(), m_view);
-    shader->setUniformValue(shader->GetUniformModel(), model);
+    shader->setUniformValue(shader->GetUniformModel(), m_mesh->GetModelMatrice());
 
-    // render the triangle
-    // Enable the vertex arrays we created
-    // Draw from the data in the arrays
-    m_vao->bind();
-    glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, nullptr);
-    // disable the vertex arrays
-    m_vao->release();
-    //m_mesh->RenderMesh();
-
+    // rendering
+    m_mesh->RenderMesh();
 
     // Remove the shader from context
     shader->release();
